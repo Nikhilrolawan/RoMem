@@ -1,0 +1,9 @@
+[project]
+name = "romem"
+version = "0.1.0"
+description = "A production-grade memory library by Rolawan"
+authors = [{name = "Rolawan"}]
+requires-python = ">=3.9"
+dependencies = [
+    "pydantic>=2.12.5",
+]
