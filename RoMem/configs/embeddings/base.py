@@ -1,19 +1,9 @@
-from abc import ABC
+from pydantic import BaseModel, Field
 
-class BaseEmbeddingConfig(ABC):
+class BaseEmbeddingConfig(BaseModel):
     """
     config for embedding
     """
-
-    def __init__(
-        self,
-        model: str | None = None,
-        api_key: str | None = None,
-        embed_dim: int | None = None
-    ):
-        """
-        initialize a instance of config class for embedding
-        """
-        self.model = model
-        self.api_key = api_key
-        self.embed_dim = embed_dim
+    model: str | None = None,
+    api_key: str = Field(repr=False),
+    embed_dim: int | None = Field(None, gt = 0, description = "Embedding Dimension")

@@ -18,7 +18,7 @@ class GeminiEmbedding(BaseEmbedding):
             self.config.embed_dim = 768
         
         api_key = self.config.api_key or os.getenv("GOOGLE_API_KEY")
-        client = genai.Client(api_key=api_key)
+        self.client = genai.Client(api_key=api_key)
 
     def embed(self, text: list[str], memory_action: Literal["search", "update", "add"] | None = None):
 

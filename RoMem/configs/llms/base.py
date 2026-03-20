@@ -1,24 +1,12 @@
-from abc import ABC
+from pydantic import BaseModel, Field
 
-class LlmConfig(ABC):
+class LlmConfig(BaseModel):
     """
-    This class Provides Common Config across all LLM's
+    Common config across all LLMs.
     """
-    def __init__(
-        self,
-        model_name: str | None = None,
-        api_key: str | None = None,
-        top_p: float = 0.1,
-        top_k: int = 1,
-        temperature: float = 0.5,
-        max_tokens: int = 500,
-    ):
-        """
-        Initialize a Base config class instance for llms
-        """
-        self.model_name = model_name
-        self.api_key = api_key
-        self.top_p = top_p
-        self.top_k = top_k
-        self.temperature = temperature
-        self.max_tokens =  max_tokens
+    model_name: str | None = None
+    api_key: str | None = Field(None, repr=False) 
+    top_p: float = Field(0.1, ge=0.0, le=1.0, description="Nucleus sampling threshold")
+    top_k: int = Field(1, ge=1, description="Top-k sampling")
+    temperature: float = Field(0.5, ge=0.0, le=2.0, description="Sampling temperature")
+    max_tokens: int = Field(500, gt=0, description="Maximum tokens to generate")
