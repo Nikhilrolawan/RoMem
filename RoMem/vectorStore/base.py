@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 class VectorStoreBase(ABC):
     
     @abstractmethod
-    def create_collection(self, collection_name: str, embedding_dim: int):
+    def create_collection(self, collection_name: str | None, embedding_dim: int | None):
         pass
 
     @abstractmethod
